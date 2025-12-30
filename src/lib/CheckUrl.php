@@ -1,25 +1,26 @@
 <?php
-namespace Hoanguyencoder\HttpStatus;
+
+namespace Hoanguyencoder\HttpStatus\lib;
 
 class CheckUrl
 {
-    
-    public function is_url($uri){
-        if(preg_match( '/^(http|https):\\/\\/[a-z0-9_]+([\\-\\.]{1}[a-z_0-9]+)*\\.[_a-z]{2,5}'.'((:[0-9]{1,5})?\\/.*)?$/i' ,$uri)){
-        return $uri;
-        }
-        else{
-            return false;
-        }
+    public static function isUrl(string $uri): bool
+    {
+        return (bool) preg_match(
+            '/^(http|https):\/\/[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}((:[0-9]{1,5})?\/.*)?$/i',
+            $uri
+        );
     }
+
     public static function check(string $url): int
     {
-        if(self::is_url($url) == false){
+        if (!self::isUrl($url)) {
             return 0;
         }
+
         if (!filter_var($url, FILTER_VALIDATE_URL)) {
-            // thử thêm scheme nếu người dùng nhập thiếu
             $url = (strpos($url, '://') === false) ? 'http://' . $url : $url;
+
             if (!filter_var($url, FILTER_VALIDATE_URL)) {
                 return 0;
             }
@@ -32,9 +33,11 @@ class CheckUrl
             CURLOPT_TIMEOUT => 10,
             CURLOPT_RETURNTRANSFER => true,
         ]);
+
         curl_exec($ch);
         $code = curl_getinfo($ch, CURLINFO_HTTP_CODE) ?: 0;
         curl_close($ch);
+
         return (int) $code;
     }
 }

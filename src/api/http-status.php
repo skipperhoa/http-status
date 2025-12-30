@@ -1,8 +1,7 @@
 <?php
 require_once __DIR__ . '/../../vendor/autoload.php';
 
-use Hoanguyencoder\HttpStatus\CheckUrl as HttpStatus;
-
+use Hoanguyencoder\HttpStatus\lib\CheckUrl as HttpStatus;
 $url = $_POST['url'] ?? '';
 
 $result = HttpStatus::check($url);

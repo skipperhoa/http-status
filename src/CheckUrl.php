@@ -1,0 +1,28 @@
+<?php
+namespace Hoanguyencoder\HttpStatus;
+
+class CheckUrl
+{
+    public static function check(string $url): int
+    {
+        if (!filter_var($url, FILTER_VALIDATE_URL)) {
+            // try adding scheme if missing
+            $url = (strpos($url, '://') === false) ? 'http://' . $url : $url;
+            if (!filter_var($url, FILTER_VALIDATE_URL)) {
+                return 0;
+            }
+        }
+
+        $ch = curl_init($url);
+        curl_setopt_array($ch, [
+            CURLOPT_NOBODY => true,
+            CURLOPT_FOLLOWLOCATION => true,
+            CURLOPT_TIMEOUT => 10,
+            CURLOPT_RETURNTRANSFER => true,
+        ]);
+        curl_exec($ch);
+        $code = curl_getinfo($ch, CURLINFO_HTTP_CODE) ?: 0;
+        curl_close($ch);
+        return (int) $code;
+    }
+}

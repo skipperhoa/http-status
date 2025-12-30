@@ -1,0 +1,15 @@
+{
+    "name": "hoanguyencoder/http-status",
+    "description": "Check Status Url",
+    "autoload": {
+        "psr-4": {
+            "Hoanguyencoder\\HttpStatus\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "hoanguyencoder"
+        }
+    ],
+    "require": {}
+}

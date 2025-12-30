@@ -1,0 +1,260 @@
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  color: #222222;
+  background: #f7f9fb;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+@font-face {
+  font-family: "HelvetIns";
+  src: url("../../assets/fonts/HelvetIns.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+.wapper {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+header {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background: #ffffff;
+  border-bottom: 1px solid rgba(16, 24, 40, 0.04);
+  box-shadow: 0 1px 6px rgba(16, 24, 40, 0.03);
+  /* small visual tweak when header overlaps content */
+}
+header > div {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0.6rem 1rem;
+  /* the second child div holds the ul in the provided markup */
+}
+header > div .logo a {
+  text-decoration: none;
+  color: #0b76ef;
+  display: inline-flex;
+  align-items: center;
+}
+header > div .logo h1 {
+  font-size: 20px;
+  margin: 0;
+  font-weight: 400;
+  letter-spacing: -0.02em;
+  font-family: "HelvetIns";
+}
+header > div > div ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  gap: 0.5rem;
+}
+header > div > div ul li {
+  list-style: none;
+  display: inline-block;
+}
+header > div > div ul li a {
+  display: inline-block;
+  text-decoration: none;
+  color: #6b6f76;
+  padding: 0.45rem 0.75rem;
+  border-radius: 6px;
+  font-size: 0.95rem;
+  transition: all 160ms ease;
+}
+header > div > div ul li a:hover {
+  color: #0b76ef;
+  background: rgba(11, 118, 239, 0.06);
+}
+header + .content {
+  padding-top: 0;
+}
+
+/* Responsive rules */
+@media (max-width: 720px) {
+  header > div {
+    flex-wrap: wrap;
+    align-items: center;
+  }
+  header > div .logo {
+    margin-right: 0.5rem;
+  }
+  header > div > div {
+    width: 100%;
+    margin-top: 0.4rem;
+  }
+  header > div > div ul {
+    width: 100%;
+    justify-content: flex-end;
+    gap: 0.4rem;
+    flex-wrap: wrap;
+  }
+  header > div > div ul li a {
+    padding: 0.35rem 0.6rem;
+    font-size: 0.92rem;
+  }
+}
+/* Utility: small container for pages that should not be full width */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+/* URL check section: centered input + button */
+section {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2.25rem 1rem;
+  background: #f7f9fb;
+  flex: 1;
+}
+section .box-section {
+  width: 100%;
+  max-width: 840px;
+}
+section .box-content {
+  width: 100%;
+  max-width: 840px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 20px;
+}
+section .box-form {
+  width: 100%;
+}
+section .box-form-title {
+  text-align: center;
+  margin-bottom: 0.6rem;
+}
+section .box-form-title h2 {
+  margin: 0;
+  font-size: 30px;
+  color: #222222;
+  font-family: "HelvetIns";
+  font-weight: 400;
+}
+section .box-form-input {
+  display: flex;
+  justify-content: center;
+}
+section .box-form-input form {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  width: 100%;
+  background: #ffffff;
+  padding: 0.5rem;
+  border-radius: 12px;
+  box-shadow: 0 6px 18px rgba(16, 24, 40, 0.06);
+  border: 1px solid rgba(16, 24, 40, 0.04);
+}
+section .box-form-input input[type=text] {
+  flex: 1 1 auto;
+  border: none;
+  padding: 0.6rem 0.75rem;
+  font-size: 1rem;
+  color: #222222;
+  background: transparent;
+  outline: none;
+}
+section .box-form-input input[type=text]::-moz-placeholder {
+  color: rgb(126.9306666667, 131.272, 138.8693333333);
+}
+section .box-form-input input[type=text]::placeholder {
+  color: rgb(126.9306666667, 131.272, 138.8693333333);
+}
+section .box-form-input button {
+  -moz-appearance: none;
+       appearance: none;
+  -webkit-appearance: none;
+  border: none;
+  background: #0b76ef;
+  color: #fff;
+  padding: 0.55rem 0.9rem;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 150ms ease, transform 120ms ease;
+}
+section .box-form-input button:hover {
+  background: rgb(9.6536, 103.5568, 209.7464);
+  transform: translateY(-1px);
+}
+@media (max-width: 520px) {
+  section .box-form-input form {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  section .box-form-input button {
+    width: 100%;
+  }
+}
+section .box-result {
+  width: 100%;
+  margin: 0 auto;
+}
+section .box-result .loading {
+  width: 50px;
+  height: 50px;
+  display: none;
+  margin: 0 auto;
+}
+section .box-result .box-result-status {
+  border: 1px solid rgba(16, 24, 40, 0.04);
+  border-spacing: 0;
+  width: 100%;
+  background: #ffffff;
+  padding: 0.5rem;
+  border-radius: 12px;
+  box-shadow: 0 6px 18px rgba(16, 24, 40, 0.06);
+}
+section .box-result .box-result-status th, section .box-result .box-result-status td {
+  padding: 10px;
+  border: 1px solid rgba(16, 24, 40, 0.04);
+  text-align: center;
+}
+
+.status_200 {
+  color: green;
+}
+
+.status_404 {
+  color: red;
+}
+
+.status_503 {
+  color: red;
+}
+
+.status_0 {
+  color: red;
+}
+
+footer {
+  width: 100%;
+  background: #ffffff;
+  border-top: 1px solid rgba(16, 24, 40, 0.04);
+  box-shadow: 0 1px 6px rgba(16, 24, 40, 0.03);
+  padding: 0.6rem 1rem;
+  text-align: center;
+}/*# sourceMappingURL=styles.css.map */

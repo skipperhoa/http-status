@@ -1,0 +1,229 @@
+// Top navigation styles for header
+$primary: #0b76ef;
+$bg: #ffffff;
+$text: #222222;
+$muted: #6b6f76;
+
+*{box-sizing: border-box}
+html,body{margin:0;padding:0;font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial; color:$text;background: #f7f9fb; height: 100vh; display: flex; flex-direction: column;}
+ @font-face {
+      font-family: "HelvetIns";
+      src: url("../../assets/fonts/HelvetIns.ttf") format("truetype");
+      font-weight: normal;
+      font-style: normal;
+      font-display: swap;
+    }
+
+.wapper{
+	width: 100%; 
+	min-height: 100vh;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+header{
+	position: sticky;
+	top: 0;
+	z-index: 1000;
+	background: $bg;
+	border-bottom: 1px solid rgba(16,24,40,0.04);
+	box-shadow: 0 1px 6px rgba(16,24,40,0.03);
+
+	> div{
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		max-width: 1200px;
+		margin: 0 auto;
+		padding: 0.6rem 1rem;
+
+		.logo{
+			a{ text-decoration: none; color: $primary; display:inline-flex; align-items:center }
+			h1{
+				font-size: 20px;
+				margin: 0;
+				font-weight: 400;
+				letter-spacing: -0.02em;
+				font-family: "HelvetIns";
+			}
+		}
+
+		/* the second child div holds the ul in the provided markup */
+		> div{
+			ul{
+				list-style: none;
+				margin: 0;
+				padding: 0;
+				display: flex;
+				gap: 0.5rem;
+
+				li{ list-style: none; display: inline-block;
+					a{
+						display: inline-block;
+						text-decoration: none;
+						color: $muted;
+						padding: 0.45rem 0.75rem;
+						border-radius: 6px;
+						font-size: 0.95rem;
+						transition: all 160ms ease;
+          
+						&:hover{
+							color: $primary;
+							background: rgba(11,118,239,0.06);
+						}
+					}
+				}
+			}
+		}
+	}
+
+	/* small visual tweak when header overlaps content */
+	+ .content{padding-top: 0}
+}
+
+/* Responsive rules */
+@media (max-width: 720px){
+	header > div{
+		flex-wrap: wrap;
+		align-items: center;
+
+		.logo{ margin-right: 0.5rem; }
+
+		> div{
+			width: 100%;
+			margin-top: 0.4rem;
+
+			ul{
+				width: 100%;
+				justify-content: flex-end;
+				gap: 0.4rem;
+				flex-wrap: wrap;
+
+				li a{ padding: 0.35rem 0.6rem; font-size: 0.92rem }
+			}
+		}
+	}
+}
+
+/* Utility: small container for pages that should not be full width */
+.container{ max-width: 1200px; margin: 0 auto; padding: 0 1rem }
+
+/* URL check section: centered input + button */
+section{
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: 2.25rem 1rem;
+	background: #f7f9fb;
+	flex: 1;
+
+	.box-section{
+		width: 100%;
+		max-width: 840px;
+	}
+
+	.box-content{
+		width: 100%;
+		max-width: 840px;
+		display: flex;
+        flex-direction: column;
+		justify-content: center;
+        gap: 20px;
+	}
+
+	.box-form{
+		width: 100%;
+	}
+
+	.box-form-title{ text-align: center; margin-bottom: 0.6rem;
+		h2{ margin:0; font-size: 30px; color: $text;font-family: "HelvetIns";font-weight: 400;}
+	}
+
+	.box-form-input{
+		display: flex;
+		justify-content: center;
+
+		form{
+			display: flex;
+			align-items: center;
+			gap: 0.6rem;
+			width: 100%;
+			background: #ffffff;
+			padding: 0.5rem;
+			border-radius: 12px;
+			box-shadow: 0 6px 18px rgba(16,24,40,0.06);
+			border: 1px solid rgba(16,24,40,0.04);
+		}
+
+		input[type="text"]{
+			flex: 1 1 auto;
+			border: none;
+			padding: 0.6rem 0.75rem;
+			font-size: 1rem;
+			color: $text;
+			background: transparent;
+			outline: none;
+
+			&::placeholder{ color: lighten($muted, 8%) }
+		}
+
+		button{
+			appearance: none;
+			-webkit-appearance: none;
+			border: none;
+			background: $primary;
+			color: #fff;
+			padding: 0.55rem 0.9rem;
+			border-radius: 8px;
+			font-weight: 600;
+			cursor: pointer;
+			transition: background 150ms ease, transform 120ms ease;
+		}
+
+		button:hover{ background: darken($primary, 6%); transform: translateY(-1px) }
+
+		@media (max-width: 520px){
+			form{ flex-direction: column; align-items: stretch }
+			button{ width: 100% }
+		}
+	}
+    .box-result{
+        width: 100%;
+       
+        margin:0 auto;
+		.loading{
+			    width: 50px;
+				height: 50px;
+				display: none;
+				margin: 0 auto;
+		}
+        .box-result-status{
+            border: 1px solid rgba(16,24,40,0.04);
+            border-spacing: 0;
+            width: 100%;
+            background: #ffffff;
+            padding: 0.5rem;
+            border-radius: 12px;
+            box-shadow: 0 6px 18px rgba(16,24,40,0.06);
+            th, td{
+                padding: 10px;
+                border: 1px solid rgba(16,24,40,0.04);
+				text-align: center;
+            }
+        }
+    }
+}
+
+.status_200{ color: green }
+.status_404{ color: red }
+.status_503{ color: red }
+.status_0{ color: red }
+
+footer{
+	width: 100%;
+	background: #ffffff;
+	border-top: 1px solid rgba(16,24,40,0.04);
+	box-shadow: 0 1px 6px rgba(16,24,40,0.03);
+	padding: 0.6rem 1rem;
+	text-align: center;
+}
